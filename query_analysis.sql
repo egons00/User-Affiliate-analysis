@@ -17,11 +17,8 @@ WITH max_cte AS
 	       ,MAX(deposit_amount)                                                       AS cash
 	       ,ROW_NUMBER() OVER (PARTITION BY userid ORDER BY MAX(deposit_amount) DESC) AS rn
 	FROM spinwise
-	GROUP BY  1
-	         ,2
-	         ,3
-	ORDER BY 1 desc
-	         ,rn asc
+	GROUP BY  1,2,3
+	ORDER BY 1 desc ,rn
 )
 SELECT  userid
        ,deposit_date
