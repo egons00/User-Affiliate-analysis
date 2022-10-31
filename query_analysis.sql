@@ -8,6 +8,15 @@ ORDER BY 3 desc;
 
 
 
+---Users with highest deposit sum
+SELECT  userid				AS user
+       ,SUM(deposit_amount) AS cash
+FROM spinwise
+GROUP BY 1
+ORDER BY 2 desc;
+
+
+
 ---Analyzing biggest deposits by users
 WITH max_cte AS
 (
