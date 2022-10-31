@@ -35,3 +35,42 @@ SELECT  userid
 FROM max_cte
 WHERE rn = 1
 ORDER BY cash desc
+
+
+
+---Analyzing daily deposit frequency
+WITH daily_deposit AS
+(
+	SELECT  userid
+	       ,MAX(deposit_amount) AS cash
+	       ,COUNT(userid)       AS deposit_day_count
+	       ,31                  AS total_days
+	FROM spinwise
+	GROUP BY 1
+	ORDER BY 3 desc
+)
+SELECT  *
+       ,(total_days - deposit_day_count) AS days_not_deposited
+FROM daily_deposit
+ORDER BY days_not_deposited;
+
+
+
+---Analyzing affiliate performance by country
+SELECT  affiliate_id,
+       country
+       ,COUNT(userid)       AS deposit_count
+       ,SUM(deposit_amount) AS cash
+FROM spinwise
+GROUP BY 1,2
+ORDER BY 1,3 desc;
+
+
+
+---Analyzing country performance
+SELECT  country
+       ,COUNT(userid)       AS deposit_count
+       ,SUM(deposit_amount) AS cash
+FROM spinwise
+GROUP BY 1
+ORDER BY 3 desc;
