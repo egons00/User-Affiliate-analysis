@@ -1,7 +1,8 @@
 ---Analyzing affiliates
 SELECT  affiliate_id
-       ,SUM(deposit_amount) AS gmv_deposited
-       ,COUNT(userid)       AS user_count
+       ,SUM(deposit_amount) 			AS gmv_deposited
+       ,COUNT(userid)       			AS deposit_count
+	   ,COUNT(distinct userid)       	AS user_count
 FROM spinwise
 GROUP BY 1
 ORDER BY 3 desc;
@@ -58,7 +59,7 @@ ORDER BY days_not_deposited;
 
 ---Analyzing affiliate performance by country
 SELECT  affiliate_id,
-       CASE WHEN country = 'S' then 'Sweden'
+       CASE  WHEN country = 'S' then 'Sweden'
              WHEN country = 'F' then 'Finland'
              WHEN country = 'E' then 'Estonia' else 0::text end 	AS country
        ,COUNT(userid)       										AS deposit_count
