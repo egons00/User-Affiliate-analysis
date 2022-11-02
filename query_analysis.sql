@@ -84,7 +84,7 @@ ORDER BY 3 desc;
 ---How many users each affiliate brings per week?
 SELECT  affiliate_id
        ,cast(date_trunc('week',deposit_date)as date) AS week_date
-       ,COUNT(userid)                                AS user_count
+       ,COUNT(distinct userid)                       AS user_count
        ,SUM(deposit_amount)                          AS deposit_sum
 FROM spinwise
 GROUP BY 1,2
