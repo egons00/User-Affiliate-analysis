@@ -1,8 +1,8 @@
 ---Analyzing affiliates
 SELECT  affiliate_id
-       ,SUM(deposit_amount) 			AS gmv_deposited
-       ,COUNT(userid)       			AS deposit_count
-	   ,COUNT(distinct userid)       	AS user_count
+       	,SUM(deposit_amount) 			AS gmv_deposited
+       	,COUNT(userid)       			AS deposit_count
+	,COUNT(distinct userid)       		AS user_count
 FROM spinwise
 GROUP BY 1
 ORDER BY 3 desc;
