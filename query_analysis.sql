@@ -42,10 +42,10 @@ ORDER BY 3 desc;
 ---Analyzing daily deposit frequency
 WITH daily_deposit AS
 (
-	SELECT  userid              AS user_id
-	       ,MAX(deposit_amount) AS deposit_amount
-	       ,COUNT(userid)       AS deposit_day_count
-	       ,31                  AS total_days
+	SELECT  userid                                      AS user_id
+	       ,MAX(deposit_amount)                         AS deposit_amount
+	       ,COUNT(distinct deposit_date::date)          AS deposit_day_count
+	       ,30                                          AS total_days
 	FROM spinwise
 	GROUP BY 1
 	ORDER BY 3 desc
