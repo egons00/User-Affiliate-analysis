@@ -10,8 +10,8 @@ ORDER BY 3 desc;
 
 
 ---Users with highest deposit sum
-SELECT  userid				AS user
-       ,SUM(deposit_amount) AS deposit_sum
+SELECT  userid			AS user
+       ,SUM(deposit_amount) 	AS deposit_sum
 FROM spinwise
 GROUP BY 1
 ORDER BY 2 desc;
@@ -62,8 +62,8 @@ SELECT  affiliate_id,
        CASE  WHEN country = 'S' then 'Sweden'
              WHEN country = 'F' then 'Finland'
              WHEN country = 'E' then 'Estonia' else 0::text end 	AS country
-       ,COUNT(userid)       										AS deposit_count
-       ,SUM(deposit_amount) 										AS deposit_sum
+       ,COUNT(userid)       						AS deposit_count
+       ,SUM(deposit_amount) 						AS deposit_sum
 FROM spinwise
 GROUP BY 1,2
 ORDER BY 1,3 desc;
